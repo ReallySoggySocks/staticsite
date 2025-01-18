@@ -11,9 +11,10 @@ class HTMLNode:
     
     def props_to_html(self):
         formatted = ""
-        for item in self.props:
-            value = self.props[item]
-            formatted += f' {item}="{value}"'
+        if self.props != None:
+            for item in self.props:
+                value = self.props[item]
+                formatted += f' {item}="{value}"'
         return formatted
             
     
@@ -28,12 +29,12 @@ class LeafNode:
         self.props = props
     
     def to_html(self):
-
         formatted = ""
-        for item in self.props:
-            value = self.props[item]
-            formatted += f' {item}="{value}"'
-
+        if self.props != None:
+            for item in self.props:
+                value = self.props[item]
+                formatted += f' {item}="{value}"'
+            return formatted
 
         if self.value == None:
             raise ValueError("All LeafNodes must have a value")
@@ -56,10 +57,13 @@ class ParentNode:
             raise ValueError("All ParentNodes must have a tag")
         if self.children == None:
             raise ValueError("All ParentNodes must have children")
+        if not isinstance(self.children, list):
+            raise ValueError("Children must be in a list")
         else:
-            html_string = f"<{self.tag}>"
+            children_tag = ""
+
             for child in self.children:
-                html_string += child.to_html()
+                children_tag += child.to_html()
 
         # return a string representing the HTML tag of the node and it's children
-        return html_string + f"</{self.tag}>"
+        return f"<{self.tag}>" + children_tag + f"</{self.tag}>"
