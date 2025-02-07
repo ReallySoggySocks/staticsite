@@ -16,7 +16,6 @@ class HTMLNode:
                 value = self.props[item]
                 formatted += f' {item}="{value}"'
         return formatted
-            
     
     def __repr__(self):
         print(f"{self.tag}, {self.value}, {self.children}, {self.props}")
