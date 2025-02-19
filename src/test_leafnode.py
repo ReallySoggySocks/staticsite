@@ -13,8 +13,8 @@ class TestLeafNode(unittest.TestCase):
         self.assertIsInstance(node.to_html(), str)
     
     def test_none_value(self):
-        node = LeafNode(None, None)
-        self.assertRaises(ValueError)
+        with self.assertRaises(ValueError):
+            node = LeafNode("a", None)
     
     def test_none_tag(self):
         node = LeafNode(None, "This is a paragraph")

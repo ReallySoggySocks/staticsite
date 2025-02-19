@@ -1,22 +1,20 @@
-from multiprocessing import Value
-import string
 import unittest
 
 from htmlnode import HTMLNode, ParentNode, LeafNode
 
 class TestParentNode(unittest.TestCase):
     def test_nonetag(self):
-        child = LeafNode(None, "This is a LeafNode", None)
-        node = ParentNode(None, child, None)
-        self.assertRaises(ValueError)
+        with self.assertRaises(ValueError):
+            child = LeafNode(None, "This is a LeafNode", None)
+            node = ParentNode(None, child, None)
     
     def test_nonechild(self):
-        node = ParentNode("p", None, None)
-        self.assertRaises(ValueError)
+        with self.assertRaises(ValueError):
+            node = ParentNode("p", None, None)
     
     def test_not_list(self):
-        node = ParentNode("p", LeafNode(None, "Normal Text"))
-        self.assertRaises(ValueError)
+        with self.assertRaises(ValueError):
+            node = ParentNode("p", LeafNode(None, "Normal Text"))
     
     def test_output_str(self):
         node = ParentNode("p", 
