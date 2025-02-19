@@ -14,19 +14,18 @@ class TestTextNode(unittest.TestCase):
         self.assertEqual(node, node2)
 
     def test_url_neq(self):
-        node = TextNode("Test url", TextType.NORMAL, "https://www.oops.com")
-        node2 = TextNode("test url", TextType.NORMAL)
+        node = TextNode("Test url", TextType.TEXT, "https://www.oops.com")
+        node2 = TextNode("test url", TextType.TEXT)
         self.assertNotEqual(node, node2)
 
     def test_type_neq(self):
-        node = TextNode("Testing TextType", TextType.NORMAL)
+        node = TextNode("Testing TextType", TextType.TEXT)
         node2 = TextNode("Testing TextType", TextType.ITALIC)
         self.assertNotEqual(node, node2)
 
-
     def test_text_neq(self):
-        node = TextNode("Test text", TextType.NORMAL)
-        node2 = TextNode("Testing text", TextType.NORMAL)
+        node = TextNode("Test text", TextType.TEXT)
+        node2 = TextNode("Testing text", TextType.TEXT)
         self.assertNotEqual(node, node2)
         
 
